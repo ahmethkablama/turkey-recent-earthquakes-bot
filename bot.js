@@ -1,9 +1,9 @@
  
-const axios = require('axios'); //promise tabanlı HTTP İstemcisi. URL'ye GET isteği yapmak için kullanıldı.
-const cheerio = require('cheerio'); //gelen sonucun içindeki data cheerio ile alınır
+const axios = require('axios'); 
+const cheerio = require('cheerio'); 
 const CronJob = require('cron').CronJob; 
 const { Telegraf } = require('telegraf')
-require('dotenv').config(); //.env dosyasını ortama yüklemek
+require('dotenv').config(); 
 
 const bot = new Telegraf(process.env.TELEGRAM_API_TOKEN)
 
@@ -12,7 +12,7 @@ const LatestEarthquakes = [];
 let latitude = 0, longitude = 0, REVISION = 0; 
 let EarthquakeClock0thElement = 0, EarthquakeClock1thElement = 0, EarthquakeClock2thElement = 0, EarthquakeClock3thElement = 0, 
     EarthquakeClock4thElement = 0, EarthquakeClock5thElement = 0, EarthquakeClock6thElement = 0, EarthquakeClock7thElement = 0; 
-let NewEarthquakeQuery = 0; // bildirim olarak paylaşma için kullanılan değişken
+let NewEarthquakeQuery = 0; 
 
 
 async function setLatestEarthquakes() {
@@ -21,8 +21,8 @@ async function setLatestEarthquakes() {
     date: '', time: '', deep: '', area: ''
   };
  
-  const { data } = await axios.get(process.env.KOERI_EARTHQUAKE_INFORMATION_SYSTEM_URL); //data değişkenine URL'den menü bilgileri çekilde
-  const $ = cheerio.load(data); //data cheerio ile içeri alında
+  const { data } = await axios.get(process.env.KOERI_EARTHQUAKE_INFORMATION_SYSTEM_URL); 
+  const $ = cheerio.load(data); 
   for (var i = LatestEarthquakes.length; i > 0; i--) {
     LatestEarthquakes.shift();
   };
@@ -46,13 +46,12 @@ async function setLatestEarthquakes() {
     LatestEarthquakes.push({ ...LatestEarthquakesData });  
 
    //console.log(`${LatestEarthquakes.length}`);
-   //console.log(`${LatestEarthquakes[i-2].magnitude}`);
 } }
 
 
 
 
-const getEarthquakeNotificationJob = new CronJob('* * * * *', async () => { //Cron ile zamanlanmış görev
+const getEarthquakeNotificationJob = new CronJob('* * * * *', async () => { 
  
 await setLatestEarthquakes();
 
@@ -120,8 +119,8 @@ async function setRecentEarthquakes() {
     hour: '', day: '', month: '', latitude: '', longitude: '', depth: '', magnitude: '', region: '', distance: '', revision: '', Mw: ''
   }; REVISION = 0;
  
-  const { data } = await axios.get(process.env.KOERI_REGIONAL_EARTHQAKE_URL); //data değişkenine URL'den menü bilgileri çekilde
-  const $ = cheerio.load(data); //data cheerio ile içeri alında
+  const { data } = await axios.get(process.env.KOERI_REGIONAL_EARTHQAKE_URL); 
+  const $ = cheerio.load(data); 
   for (var i = RecentEarthquakes.length; i > 0; i--) {
     RecentEarthquakes.shift();
    };
@@ -135,8 +134,8 @@ async function setRecentEarthquakes() {
     if(RecentEarthquakesData.Mw != "-.-"){ Mw = 5; }
     else if(RecentEarthquakesData.Mw == "-.-"){ Mw = 0; }
 
-    RecentEarthquakesData.hour = $("pre").text().trim().slice((REVISION)+589+(i*128), (REVISION)+594+(i*128)); //128
-    RecentEarthquakesData.day = $("pre").text().trim().slice((REVISION)+586+(i*128), (REVISION)+588+(i*128)); //128
+    RecentEarthquakesData.hour = $("pre").text().trim().slice((REVISION)+589+(i*128), (REVISION)+594+(i*128)); 
+    RecentEarthquakesData.day = $("pre").text().trim().slice((REVISION)+586+(i*128), (REVISION)+588+(i*128)); 
     RecentEarthquakesData.month = $("pre").text().trim().slice((REVISION)+583+(i*128), (REVISION)+585+(i*128)).replace("01", "Ocak").replace("02", "Şubat").replace("03", "Mart").replace("04", "Nisan").replace("05", "Mayıs").replace("06", "Haziran").replace("07", "Temmuz").replace("08", "Ağustos").replace("09", "Eylül").replace("10", "Ekim").replace("11", "Kasım").replace("12", "Aralık"); //128
     RecentEarthquakesData.latitude = $("pre").text().trim().slice((REVISION)+599+(i*128), (REVISION)+606+(i*128)).toString();
     RecentEarthquakesData.longitude = $("pre").text().trim().slice((REVISION)+609+(i*128), (REVISION)+616+(i*128)).toString();
@@ -162,7 +161,7 @@ async function setRecentEarthquakes() {
 
 
 
-async function GetLatestEarthquakesbyLocation() { //
+async function GetLatestEarthquakesbyLocation() { 
 
   let ListRecentEarthquakesbyLocation = '', NumberOfEarthquakes = 0;
   RecentEarthquakes.sort(function(a, b){return a.distance - b.distance});
@@ -185,7 +184,7 @@ async function GetLatestEarthquakesbyLocation() { //
  `}
 
 
-async function GetLatestMajorEarthquakes() { //
+async function GetLatestMajorEarthquakes() { 
   let ListRecentMajorEarthquakes = '', NumberOfEarthquakes = 0;
 
 
@@ -196,7 +195,7 @@ async function GetLatestMajorEarthquakes() { //
     }}
   
   return ListRecentMajorEarthquakes;
-  //console.log(`${OnGunHavaListe}`);
+
 }
 
 function PublishLastMajorEarthquakes(RecentEarthquakes) { 
@@ -223,7 +222,7 @@ async function GetRecentMajorEarthquakesbyLocation() { //
   }}
 
   return ListRecentMajorEarthquakesinLocation;
-  //console.log(`${OnGunHavaListe}`);
+
 }
 
 function PublishRecentMajorEarthquakesatLocation(RecentEarthquakes) { 
@@ -241,7 +240,7 @@ else {
 
 
 
-async function startBot() { //botu başlatma fonksiyonu
+async function startBot() { 
 
 bot.start((ctx) =>  ctx.reply(`Selamün Aleyküm *${ctx.from.first_name}* 😊 SON DEPREMLER BOTU'na hoş geldin
 \nSON DEPREMLER BOTU Kandilli Rasathanesi tarafından yayınlanan verileri kullanmaktadır.
@@ -251,16 +250,13 @@ bot.start((ctx) =>  ctx.reply(`Selamün Aleyküm *${ctx.from.first_name}* 😊 S
 
 
 bot.command('sondepremler', async ctx => {
-  //ctx.telegram.sendChatAction(ctx.chat.id, 'typing')
   await setLatestEarthquakes();
-
   bot.telegram.sendMessage(ctx.chat.id, await GetLatestEarthquakes(), {disable_web_page_preview: true , parse_mode: 'Markdown'});
 
 });
 
 
 bot.command('son3ile4', async ctx => {
-  //ctx.telegram.sendChatAction(ctx.chat.id, 'typing')
   EarthquakeMagnitude_1 = 3; EarthquakeMagnitude_2 = 4;
   await setRecentEarthquakes();
 
@@ -274,7 +270,6 @@ bot.command('son3ile4', async ctx => {
 
 
 bot.command('son4ile5', async ctx => {
-  //ctx.telegram.sendChatAction(ctx.chat.id, 'typing')
   EarthquakeMagnitude_1 = 4; EarthquakeMagnitude_2 = 5;
   await setRecentEarthquakes();
 
@@ -288,7 +283,6 @@ bot.command('son4ile5', async ctx => {
 
 
 bot.command('son5ile6', async ctx => {
-  //ctx.telegram.sendChatAction(ctx.chat.id, 'typing')
   EarthquakeMagnitude_1 = 5; EarthquakeMagnitude_2 = 6;
   await setRecentEarthquakes();
 
@@ -301,7 +295,6 @@ bot.command('son5ile6', async ctx => {
 }})
 
 bot.command('son6uzeri', async ctx => {
-  //ctx.telegram.sendChatAction(ctx.chat.id, 'typing')
   EarthquakeMagnitude_1 = 6; EarthquakeMagnitude_2 = 20;
   await setRecentEarthquakes();
 
@@ -315,11 +308,9 @@ bot.command('son6uzeri', async ctx => {
 
 
 bot.command('konumdeprem', (ctx) => {
-  //ctx.telegram.sendChatAction(ctx.chat.id, 'typing')
   bot.telegram.sendMessage(ctx.chat.id,  "*Lütfen altta bulunan 📎 ataç ikonundan mevcut konumunuzu paylaşın.*", {parse_mode: 'Markdown'});
   
   bot.on('location', async (ctx) => {
-    //ctx.telegram.sendChatAction(ctx.chat.id, 'typing')
     latitude = ctx.message.location.latitude; longitude = ctx.message.location.longitude;
   
     ctx.reply('*Konumunuza yakın hangi deprem bilgisini istiyorsunuz?*',
@@ -413,14 +404,14 @@ bot.launch();
 
 async function runBot() {
 await setLatestEarthquakes();
-//EarthquakeClock0thElement = LatestEarthquakes[0].time; 
-//EarthquakeClock1thElement = LatestEarthquakes[1].time;
-//EarthquakeClock2thElement = LatestEarthquakes[2].time;
-//EarthquakeClock3thElement = LatestEarthquakes[3].time;
-//EarthquakeClock4thElement = LatestEarthquakes[4].time;
-//EarthquakeClock5thElement = LatestEarthquakes[5].time;
-//EarthquakeClock6thElement = LatestEarthquakes[6].time;
-//EarthquakeClock7thElement = LatestEarthquakes[7].time;
+EarthquakeClock0thElement = LatestEarthquakes[0].time; 
+EarthquakeClock1thElement = LatestEarthquakes[1].time;
+EarthquakeClock2thElement = LatestEarthquakes[2].time;
+EarthquakeClock3thElement = LatestEarthquakes[3].time;
+EarthquakeClock4thElement = LatestEarthquakes[4].time;
+EarthquakeClock5thElement = LatestEarthquakes[5].time;
+EarthquakeClock6thElement = LatestEarthquakes[6].time;
+EarthquakeClock7thElement = LatestEarthquakes[7].time;
 await setRecentEarthquakes();
 await startBot();
 getEarthquakeNotificationJob.start();
