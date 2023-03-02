@@ -71,7 +71,3 @@ npm install
 * [Axios Package](https://www.npmjs.com/package/axios)
 * [Cheerio Package](https://www.npmjs.com/package/cheerio)
 * [Cron Package](https://www.npmjs.com/package/cron)
-
-## To Do List
-- [ ] Premise Earthquake Information System to be Added
-- [ ] Database üzerinde çalışır bir sürüm yazılacak

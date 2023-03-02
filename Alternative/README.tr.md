@@ -71,7 +71,3 @@ Komut                   | Açıklama
 * [Axios Package](https://www.npmjs.com/package/axios)
 * [Cheerio Package](https://www.npmjs.com/package/cheerio)
 * [Cron Package](https://www.npmjs.com/package/cron)
-
-## Yapılacaklar Listesi
-- [ ] Öncül Deprem Bilgi Sistemi Eklenecek
-- [ ] Database üzerinde çalışır bir sürüm yazılacak
