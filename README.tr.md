@@ -73,5 +73,8 @@ Komut                   | Açıklama
 * [Cron Package](https://www.npmjs.com/package/cron)
 
 ## Yapılacaklar Listesi
-- [ ] Öncül Deprem Bilgi Sistemi Eklenecek
-- [ ] Database üzerinde çalışır bir sürüm yazılacak
+- [ ] Öncül Deprem Bilgi Sistemi eklenecek.
+- [ ] Fazla mesaj isteklerine karşı oluşan hatalar giderilecek.
+- [ ] Kullanıcının botu engellemesi sonucu mesaj gönderme isteği sorunu düzeltilecek.
+- [ ] Sunucu sorunu olan siteden "Get" isteği gönderildiğinde oluşan sorun giderilecek.
+- [ ] Database üzerinde çalışır bir sürüm yazılacak.
