@@ -17,7 +17,7 @@ Command                 | Explanation
 ----------------------- | ----------------------------------------    
 `/start`                | Starts the bot
 `/sondepremler`         | The latest earthquakes
-`son3ile4`              | 3 to 4 earthquakes
+`/son3ile4`              | 3 to 4 earthquakes
 `/son4ile5`             | 4 to 5 earthquakes
 `/son5ile6`             | 5 to 6 earthquakes
 `/son6uzeri`            | 6 or more earthquakes

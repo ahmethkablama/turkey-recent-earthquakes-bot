@@ -17,7 +17,7 @@ Komut                   | Açıklama
 ----------------------- | ----------------------------------------    
 `/start`                | Botu başlatır
 `/sondepremler`         | En son depremler
-`son3ile4`              | 3 ile 4 arası depremler
+`/son3ile4`              | 3 ile 4 arası depremler
 `/son4ile5`             | 4 ile 5 arası depremler
 `/son5ile6`             | 5 ile 6 arası depremler 
 `/son6uzeri`            | 6 ve üzeri depremler
