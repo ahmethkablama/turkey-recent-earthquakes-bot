@@ -73,8 +73,9 @@ npm install
 * [Cron Package](https://www.npmjs.com/package/cron)
 
 ## To Do List
-- [ ] Premise Earthquake Information System to be Added.
-- [ ] Errors caused by excessive message requests will be fixed.
-- [ ] The problem of sending a message as a result of the user blocking the bot will be fixed.
-- [ ] The problem that occurs when sending "Get" request from the site with server problem will be fixed.
+- [x] Premise Earthquake Information System to be Added.
+- [x] Errors caused by excessive message requests will be fixed.
+- [x] The problem of sending a message as a result of the user blocking the bot will be fixed.
+- [x] The problem that occurs when sending "Get" request from the site with server problem will be fixed.
+- [x] With Google Maps integration, the earthquake center will be displayed on the map image.
 - [ ] A working version will be written on the database.
