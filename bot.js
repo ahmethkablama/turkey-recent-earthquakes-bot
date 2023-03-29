@@ -155,7 +155,7 @@ const getEarthquakeNotificationJob = new CronJob('*/5 * * * * *', async () => {
     
     if ( EarthquakeClock0thElement != RecentEarthquakes[a].hour && EarthquakeClock1thElement != RecentEarthquakes[a].hour && EarthquakeClock2thElement != RecentEarthquakes[a].hour && EarthquakeClock3thElement != RecentEarthquakes[a].hour && 
          EarthquakeClock4thElement != RecentEarthquakes[a].hour && EarthquakeClock5thElement != RecentEarthquakes[a].hour && EarthquakeClock6thElement != RecentEarthquakes[a].hour && EarthquakeClock7thElement != RecentEarthquakes[a].hour && 
-         RecentEarthquakes[a].magnitude >= 4.0) { 
+         RecentEarthquakes[a].magnitude >= 3.9) { 
      
       for (let i = 0; i < 8 ; i++) { NewEarthquakeQuery=i;
   
